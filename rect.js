@@ -63,7 +63,7 @@ function expandHull(hull, amount = 1) {
 }
 
 function shrinkAmountFor(strokeCount) {
-  return Math.round(1 * Math.pow(strokeCount, 1.2));
+  return Math.round(1 * Math.pow(strokeCount, 1.4));
 }
 
 class Rect {
