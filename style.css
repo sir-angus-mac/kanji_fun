@@ -5,3 +5,9 @@ html, body {
 canvas {
   display: block;
 }
+
+#myBox {
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
