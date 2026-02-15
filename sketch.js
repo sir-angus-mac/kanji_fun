@@ -7,6 +7,10 @@ Connect with Patt: @pattvira
 https://www.pattvira.com/
 ----------------------------------------
 */
+const kanaData = {
+    ...kanaData1,
+    ...kanaData2
+}; 
 
 const {Engine, Body, Bodies, Composite} = Matter;
 
