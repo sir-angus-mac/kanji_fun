@@ -56,18 +56,19 @@ let engine;
 let boxes = []; let ground;
 
 function setup() {
-  let c = createCanvas(windowWidth, windowWidth);
-  c.style('width', windowWidth);
-  c.style('height', windowWidth);
+  let c = createCanvas(windowWidth, windowHeight - 60);
+
+  c.style('width', windowWidth + 'px');
+  c.style('height', (windowHeight - 150) + 'px');
 
   engine = Engine.create();
- 
+
   ground = new Ground(
-  windowWidth / 2,        // center X
-  windowWidth - 30,      // near the bottom
-  windowWidth,            // full width
-  20                      // thickness
-);
+    windowWidth / 2,
+    (windowHeight - 150) - 30,   // 30px above bottom of canvas
+    windowWidth,
+    20
+  );
 }
 
 function createCharImage(strokes, scale = 1, padding = 20) {
