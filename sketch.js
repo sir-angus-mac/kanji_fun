@@ -59,13 +59,13 @@ function setup() {
   let c = createCanvas(windowWidth, windowHeight - 60);
 
   c.style('width', windowWidth + 'px');
-  c.style('height', (windowHeight - 150) + 'px');
+  c.style('height', (windowHeight - 60) + 'px');
 
   engine = Engine.create();
 
   ground = new Ground(
     windowWidth / 2,
-    (windowHeight - 150) - 30,   // 30px above bottom of canvas
+    (windowHeight - 60) - 30,   // 30px above bottom of canvas
     windowWidth,
     20
   );
