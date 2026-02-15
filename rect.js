@@ -63,15 +63,22 @@ function expandHull(hull, amount = 1) {
 }
 
 function shrinkAmountFor(strokeCount) {
-  return Math.round(1 * Math.pow(strokeCount, 1.4));
+  if (strokeCount >= 7) {
+    // Complex kanji → smaller borders
+    return Math.round(Math.pow(strokeCount, 1.4));
+  }
+
+  // Simple characters → bigger borders
+  // Boost the low end so kana don’t look tiny
+  return Math.round(20 + Math.pow(strokeCount, 1.8));
 }
 
 class Rect {
-  constructor(x, y, strokes, img, scale = 0.3) {
+  constructor(x, y, strokes, img, scale = 0.5) {
     this.img = img;
 
     // Flatten strokes
-    let all = strokes.flat();
+    let all = strokes.flat(); 
 
     let strokeCount = strokes.length;
     let shrink = shrinkAmountFor(strokeCount);
@@ -107,7 +114,7 @@ class Rect {
 
   // Draw the image
   imageMode(CENTER);
-  image(this.img, 0, 0, 60, 60);
+  image(this.img, 0, 0, 100, 100); 
 
   // // Draw border
   // noFill();

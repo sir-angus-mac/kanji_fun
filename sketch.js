@@ -56,7 +56,10 @@ let engine;
 let boxes = []; let ground;
 
 function setup() {
-  createCanvas(400, 400);
+  let c = createCanvas(400, 400);
+  c.style('width', '700px');
+  c.style('height', '700px');
+
   engine = Engine.create();
  
   ground = new Ground(200, 300, 400, 10);
