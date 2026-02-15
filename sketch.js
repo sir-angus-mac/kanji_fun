@@ -9,7 +9,25 @@ https://www.pattvira.com/
 */
 const kanaData = {
     ...kanaData1,
-    ...kanaData2
+    ...kanaData2,
+    ...kanaData3,
+    ...kanaData4,
+    ...kanaData5,
+    ...kanaData6,
+    ...kanaData7,
+    ...kanaData8,
+    ...kanaData9,
+    ...kanaData10,
+    ...kanaData11,
+    ...kanaData12,
+    ...kanaData13,
+    ...kanaData14,
+    ...kanaData15,
+    ...kanaData16,
+    ...kanaData17,
+    ...kanaData18,
+    ...kanaData19,
+    ...kanaData20,
 }; 
 
 const {Engine, Body, Bodies, Composite} = Matter;
