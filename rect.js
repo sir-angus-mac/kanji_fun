@@ -70,12 +70,14 @@ function shrinkAmountFor(strokeCount) {
 
   // Simple characters → bigger borders
   // Boost the low end so kana don’t look tiny
-  return Math.round(20 + Math.pow(strokeCount, 1.8));
+  return Math.round(30 + Math.pow(strokeCount, 1.8));
 }
 
 class Rect {
-  constructor(x, y, strokes, img, scale = 0.5) {
+  constructor(x, y, strokes, img, img_dim, scale) {
     this.img = img;
+    this.img_dim = img_dim;
+    this.scale = scale; 
 
     // Flatten strokes
     let all = strokes.flat(); 
@@ -92,8 +94,8 @@ class Rect {
     let cy = hull.reduce((s,p)=>s+p.y,0)/hull.length;
 
     let verts = hull.map(p => ({
-      x: (p.x - cx) * scale,
-      y: (p.y - cy) * scale
+      x: (p.x - cx) * this.scale,
+      y: (p.y - cy) * this.scale
     }));
 
     this.body = Bodies.fromVertices(x, y, verts, {
@@ -114,7 +116,7 @@ class Rect {
 
   // Draw the image
   imageMode(CENTER);
-  image(this.img, 0, 0, 100, 100); 
+  image(this.img, 0, 0, this.img_dim, this.img_dim); 
 
   // // Draw border
   // noFill();

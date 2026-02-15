@@ -110,11 +110,46 @@ function draw() {
   ground.display();
 }
 
+
+
+let lastValue = "";
+let ch_count = 0;
+let step = 0;
+
+const box = document.getElementById("myBox");
+
+box.addEventListener("input", () => {
+  const current = box.value;
+
+  if (current !== lastValue) {
+    ch_count = current.length;
+    step = 0;  // reset step
+    lastValue = current;
+  }
+});
+
+
+
+
+const slider = document.getElementById("scaleSlider");
+
+
 function mousePressed() {
-  let strokes;
-  const value = document.getElementById("myBox").value;
-  strokes = kanaData[value]["strokes"]; 
-  let image;
-  image = createCharImage(strokes);
-  boxes.push(new Rect(mouseX, mouseY, strokes, image));
+  if (ch_count > 0) {
+    let strokes;
+    const value = document.getElementById("myBox").value;
+    if (box.value[step] in kanaData) {
+      strokes = kanaData[box.value[step]]["strokes"]; 
+      let image;  
+      image = createCharImage(strokes);
+      let scale = Number(slider.value);
+      let img_dim = 200 * scale;   // linear mapping
+
+      boxes.push(new Rect(mouseX, mouseY, strokes, image, img_dim, scale));
+    }
+    step += 1;
+    if (step >= ch_count) {
+      step = 0; 
+    }
+  }
 }
