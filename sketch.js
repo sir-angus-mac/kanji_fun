@@ -43,14 +43,20 @@ async function loadAllKana() {
 // Start loading immediately
 // Start loading immediately and expose the promise
 window.kanaReady = loadAllKana().then(() => {
-  // Reveal the canvas after loading
+  console.log("Kana ready.");
+
+  // Reveal the canvas if you're hiding it
   const canvas = document.querySelector("canvas");
   if (canvas) {
     canvas.style.display = "block";
   }
+
+  // Change placeholder to show readiness
+  const box = document.getElementById("myBox");
+  if (box) {
+    box.placeholder = "自由に書いてください！";
+  }
 });
-
-
 
 
 const {Engine, Body, Bodies, Composite} = Matter;
