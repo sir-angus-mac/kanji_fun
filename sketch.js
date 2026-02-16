@@ -7,48 +7,47 @@ Connect with Patt: @pattvira
 https://www.pattvira.com/
 ----------------------------------------
 */
-const kanaData = {
-    ...window.kanaData1,
-    ...window.kanaData2,
-    ...window.kanaData3,
-    ...window.kanaData4,
-    ...window.kanaData5,
-    ...window.kanaData6,
-    ...window.kanaData7,
-    ...window.kanaData8,
-    ...window.kanaData9,
-    ...window.kanaData10,
-    ...window.kanaData11,
-    ...window.kanaData12,
-    ...window.kanaData13,
-    ...window.kanaData14,
-    ...window.kanaData15,
-    ...window.kanaData16,
-    ...window.kanaData17,
-    ...window.kanaData18,
-    ...window.kanaData19,
-    ...window.kanaData20,
-    ...window.kanaData21,
-    ...window.kanaData22,
-    ...window.kanaData23,
-    ...window.kanaData24,
-    ...window.kanaData25,
-    ...window.kanaData26,
-    ...window.kanaData27,
-    ...window.kanaData28,
-    ...window.kanaData29,
-    ...window.kanaData30,
-    ...window.kanaData31,
-    ...window.kanaData32,
-    ...window.kanaData33,
-    ...window.kanaData34,
-    ...window.kanaData35,
-    ...window.kanaData36,
-    ...window.kanaData37,
-    ...window.kanaData38,
-    ...window.kanaData39,
-    ...window.kanaData40,
-};
+// kanaLoader.js
+
+// Number of JSON files
+const NUM_KANA_FILES = 50;
+
+// Build file list: kana1.json → kana50.json
+const kanaJsonFiles = Array.from({ length: NUM_KANA_FILES }, (_, i) => `kana${i + 1}.json`);
+
+// Global dictionary to hold merged kana data
+window.kanaDict = {};
+
+// Load a single JSON file
+async function loadJsonFile(path) {
+  const response = await fetch(path);
+  if (!response.ok) {
+    throw new Error(`Failed to load ${path}`);
+  }
+  return response.json();
+}
+
+// Load all kana JSON files and merge them
+async function loadAllKana() { 
+  const results = await Promise.all(kanaJsonFiles.map(loadJsonFile));
+
+  // Merge all dictionaries into one
+  for (const dict of results) {
+    Object.assign(window.kanaDict, dict);
+  }
+
+  console.log("All kana JSON loaded.");
+  console.log("Total characters:", Object.keys(window.kanaDict).length);
+}
+
+// Start loading immediately
+loadAllKana();
+
+
+
+
+
+
 
 const {Engine, Body, Bodies, Composite} = Matter;
 
@@ -139,15 +138,16 @@ function mousePressed() {
   if (ch_count > 0) {
     let strokes;
     const value = document.getElementById("myBox").value;
-    if (box.value[step] in kanaData) {
-      strokes = kanaData[box.value[step]]["strokes"]; 
+    // console.log(box.value[step]); 
+    if (box.value[step] in window.kanaDict) {
+      strokes = window.kanaDict[box.value[step]]["strokes"]; 
       let image;  
       image = createCharImage(strokes);
       let scale = Number(slider.value);
       let img_dim = 200 * scale;   // linear mapping
 
       boxes.push(new Rect(mouseX, mouseY, strokes, image, img_dim, scale));
-    }
+    } 
     step += 1;
     if (step >= ch_count) {
       step = 0; 
