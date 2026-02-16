@@ -10,9 +10,9 @@ https://www.pattvira.com/
 // kanaLoader.js
 
 // Number of JSON files
-const NUM_KANA_FILES = 50;
+const NUM_KANA_FILES = 20;
 
-// Build file list: kana1.json → kana50.json
+// Build file list
 const kanaJsonFiles = Array.from({ length: NUM_KANA_FILES }, (_, i) => `kana${i + 1}.json`);
 
 // Global dictionary to hold merged kana data
