@@ -41,10 +41,14 @@ async function loadAllKana() {
 }
 
 // Start loading immediately
-loadAllKana();
-
-
-
+// Start loading immediately and expose the promise
+window.kanaReady = loadAllKana().then(() => {
+  // Reveal the canvas after loading
+  const canvas = document.querySelector("canvas");
+  if (canvas) {
+    canvas.style.display = "block";
+  }
+});
 
 
 

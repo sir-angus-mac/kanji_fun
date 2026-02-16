@@ -53,3 +53,7 @@ canvas {
   background: #383eed;
   cursor: pointer;
 }
+
+canvas {
+  display: none;
+}
