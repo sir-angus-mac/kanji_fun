@@ -55,16 +55,16 @@ let engine;
 let boxes = []; let ground;
 
 function setup() {
-  let c = createCanvas(windowWidth, windowHeight - 60);
+  let c = createCanvas(windowWidth, windowHeight - 140);
 
   c.style('width', windowWidth + 'px');
-  c.style('height', (windowHeight - 60) + 'px');
+  c.style('height', (windowHeight - 140) + 'px');
 
   engine = Engine.create();
 
   ground = new Ground(
     windowWidth / 2,
-    (windowHeight - 60) - 30,   // 30px above bottom of canvas
+    (windowHeight - 140) - 30,   // 30px above bottom of canvas
     windowWidth,
     20
   );

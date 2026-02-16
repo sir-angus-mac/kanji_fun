@@ -16,5 +16,40 @@ canvas {
 
 #scaleSlider {
   width: 100vw;
-  box-sizing: border-box;
+  height: 50px; /* gives the element space */
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent; /* avoid Safari overriding the track */
+}
+
+/* TRACK */
+#scaleSlider::-webkit-slider-runnable-track {
+  height: 20px;              /* visible bar height */
+  background: #7f84fd;          /* light gray bar */
+  border-radius: 10px;
+}
+#scaleSlider::-moz-range-track {
+  height: 20px;
+  background: #7f84fd;
+  border-radius: 10px;
+}
+
+/* THUMB */
+#scaleSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;               /* big thumb */
+  height: 40px;
+  border-radius: 50%;
+  background: #383eed;
+  cursor: pointer;
+  margin-top: -10px;         /* centers thumb on the track */
+}
+
+#scaleSlider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #383eed;
+  cursor: pointer;
 }
